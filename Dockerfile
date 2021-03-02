@@ -9,6 +9,7 @@ RUN \
         docker-cli \
         git \
         jq \
+        make \
         openssh-client \
     && \
     curl -sL https://github.com/mikefarah/yq/releases/download/$YQ/yq_linux_amd64 -o /usr/bin/yq && \
