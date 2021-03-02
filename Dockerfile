@@ -17,8 +17,9 @@ RUN \
     && \
     curl -sL https://github.com/mikefarah/yq/releases/download/$YQ/yq_linux_amd64 -o /usr/bin/yq && \
     chmod +x /usr/bin/yq && \
-    curl -sL https://github.com/kubernetes-sigs/kubebuilder/releases/download/v$KUBEBUILDER/kubebuilder_${KUBEBUILDER}_linux_amd64.tar.gz  | tar xzC /usr/ --strip 1 && \
-    chmod +x /usr/bin/kube* /usr/bin/etcd && \
+    mkdir -p /usr/local/kubebuilder && \
+    curl -sL https://github.com/kubernetes-sigs/kubebuilder/releases/download/v$KUBEBUILDER/kubebuilder_${KUBEBUILDER}_linux_amd64.tar.gz  | tar xzC /usr/local/kubebuilder/ --strip 1 && \
+    chmod +x /usr/local/kubebuilder/bin/* && \
     rm -rf /var/lib/apt/lists/* && \
     apt-get clean
-
+ENV PATH=${PATH}:/usr/local/kubebuilder/bin
