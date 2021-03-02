@@ -2,6 +2,7 @@ FROM golang
 
 ARG YQ=v4.6.0
 ARG KUBEBUILDER=2.3.2
+ARG KUSTOMIZE=4.0.4
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN \
@@ -20,6 +21,8 @@ RUN \
     mkdir -p /usr/local/kubebuilder && \
     curl -sL https://github.com/kubernetes-sigs/kubebuilder/releases/download/v$KUBEBUILDER/kubebuilder_${KUBEBUILDER}_linux_amd64.tar.gz  | tar xzC /usr/local/kubebuilder/ --strip 1 && \
     chmod +x /usr/local/kubebuilder/bin/* && \
+    curl -sL https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2F${KUSTOMIZE}/kustomize_${KUSTOMIZE}_linux_amd64.tar.gz | tar xzC /usr/bin/ && \
+    chmod +x /usr/bin/kustomize && \
     rm -rf /var/lib/apt/lists/* && \
     apt-get clean
 ENV PATH=${PATH}:/usr/local/kubebuilder/bin
