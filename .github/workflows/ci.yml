@@ -8,16 +8,8 @@ jobs:
   default:
     name: Build Docker Images
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        YQ: [v3.4.1]
-        KUBEBUILDER: [2.3.2]
     steps:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Build Docker Image
       uses: docker/build-push-action@v2
-      with:
-        build-args: |
-          YQ=${{ matrix.YQ }}
-          KUBEBUILDER=${{ matrix.KUBEBUILDER }}
